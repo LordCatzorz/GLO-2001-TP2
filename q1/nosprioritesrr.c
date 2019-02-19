@@ -29,7 +29,7 @@ void change_scheduler(int scheduler)
 
 	sched_setscheduler(0, scheduler, &Param);
 	int ThreadID = syscall(SYS_gettid);
-	printf("Code retour de errno pour changement d'ordonnanceur pour processus %d : %s. \n", ThreadID, strerror(errno));
+	printf("Code retour de errno pour changement d'ordonnanceur(%d) pour processus %d : %s. \n", scheduler, ThreadID, strerror(errno));
 }
 
 void *work(void *data)
