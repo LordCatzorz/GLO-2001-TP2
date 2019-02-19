@@ -27,12 +27,17 @@ int ProchainNumeroSerie = 1;
 void  *ThreadProducteur(void *tid);
 void  *ThreadConsommateur(void *tid);
 
+// Ajout du mutex
+
+pthread_mutex_t monMutex;
+
 // Fonction main()
 int main(int argc, char *argv[]) {
 
   	// Tableaux contenant l'information sur les threads
   	pthread_t threadsProd[N_PRODUCTEURS];
   	pthread_t threadsCons[N_CONSOMMATEURS];
+	pthread_mutex_init(&monMutex,0);
   	int status, i;
 
 	srand(time(NULL)); // initialisation de rand
@@ -87,7 +92,9 @@ void  *ThreadProducteur(void *tid) {
 	int NumeroSerieProduit;
 	cout << "Producteur " << myId << ": debute la production des items!" << endl;
 	while (true) {
-		NumeroSerieProduit = ProchainNumeroSerie++;
+		pthread_mutex_lock(&monMutex);
+		NumeroSerieProduit = ProchainNumeroSerie++; // zone critique a proteger
+		pthread_mutex_unlock(&monMutex);
 		if (NumeroSerieProduit > MAX_ITEMS_APRODUIRE) {
 			// Le programme a suffisamment produit d'items. On quitte.
 			cout << "Producteur " << myId << ": quitte car on a suffisamment produit d'items." << endl;
