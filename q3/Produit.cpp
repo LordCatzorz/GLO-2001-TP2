@@ -3,6 +3,7 @@
 #include <time.h>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <vector>
 #include "Produit.h"
 #include <iostream>
@@ -43,6 +44,9 @@ void Produit::PigerProduit(void) {
 	ligne = lignesFichier[numeroLigne];
 	NomProduit=ligne.substr(0,ligne.find(" "));
 	ligne.erase(0,ligne.find(" ")+1);
-	PrixProduit=stof(ligne);
+	int n=ligne.length();
+	char *tabChar=new char[n+1];
+	std::strcpy(tabChar,ligne.c_str());
+	PrixProduit=atof(tabChar);
 }
 //20191H
