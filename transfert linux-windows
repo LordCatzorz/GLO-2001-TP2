@@ -1,36 +1,39 @@
+top - 14:46:49 up  2:26,  4 users,  load average: 4.31, 1.93, 1.13
+Threads: 351 total,   9 running, 342 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 93.2 us,  0.5 sy,  0.0 ni,  6.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1023812 total,   198652 free,   216664 used,   608496 buff/cache
+KiB Swap:  1046524 total,  1046524 free,        0 used.   636480 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND      
+ 5633 root     -51   0   43296    588    532 R 19.6  0.1   0:15.21 nospriorite+ 
+ 5635 root     -51   0   43296    588    532 R 19.6  0.1   0:15.45 nospriorite+ 
+ 5634 root     -51   0   43296    588    532 R 19.3  0.1   0:15.58 nospriorite+ 
+ 5637 root     -51   0   43296    588    532 R 18.3  0.1   0:16.45 nospriorite+ 
+ 5636 root     -51   0   43296    588    532 R 17.9  0.1   0:15.40 nospriorite+ 
+ 1183 root      20   0  163872  86272  32472 R  0.3  8.4   0:30.21 Xorg         
+ 5638 etu1      20   0    8220   3576   3068 R  0.3  0.3   0:00.15 top     
+
+
+
+
+
 creation thread 0! 
 creation thread 1! 
 creation thread 2! 
 creation thread 3! 
 creation thread 4! 
 Je suis le thread 4 et je demarre !!! 
-Code retour de errno pour changement d'ordonnanceur pour processus 5427 : Success. 
+Code retour de errno pour changement d'ordonnanceur pour processus 5637 : Success. 
 Code retour de errno pour processus 4 : Success. 
 Je suis le thread 3 et je demarre !!! 
-Code retour de errno pour changement d'ordonnanceur pour processus 5426 : Success. 
+Code retour de errno pour changement d'ordonnanceur pour processus 5636 : Success. 
 Code retour de errno pour processus 3 : Success. 
 Je suis le thread 2 et je demarre !!! 
-Code retour de errno pour changement d'ordonnanceur pour processus 5425 : Success. 
+Code retour de errno pour changement d'ordonnanceur pour processus 5635 : Success. 
 Code retour de errno pour processus 2 : Success. 
 Je suis le thread 1 et je demarre !!! 
-Code retour de errno pour changement d'ordonnanceur pour processus 5424 : Success. 
+Code retour de errno pour changement d'ordonnanceur pour processus 5634 : Success. 
 Code retour de errno pour processus 1 : Success. 
 Je suis le thread 0 et je demarre !!! 
-Code retour de errno pour changement d'ordonnanceur pour processus 5423 : Success. 
+Code retour de errno pour changement d'ordonnanceur pour processus 5633 : Success. 
 Code retour de errno pour processus 0 : Success. 
-
-
-
-top - 14:05:22 up  1:45,  4 users,  load average: 5.12, 5.04, 5.39
-Threads: 347 total,   6 running, 341 sleeping,   0 stopped,   0 zombie
-%Cpu(s): 93.4 us,  0.0 sy,  0.0 ni,  6.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
-KiB Mem :  1023812 total,   324116 free,   205080 used,   494616 buff/cache
-KiB Swap:  1046524 total,  1046524 free,        0 used.   648928 avail Mem 
-
-  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND      
- 5427 root     -51   0   43296    592    536 R 95.0  0.1   1:02.34 nospriorite+ 
- 1183 root      20   0  158520  81988  32136 S  0.3  8.0   0:21.14 Xorg         
- 1608 etu1      20   0   37460  17412  15412 S  0.3  1.7   0:00.57 xfce4-panel  
- 1613 etu1      20   0   68192  29840  20216 S  0.3  2.9   0:04.11 xfdesktop    
- 5311 etu1      20   0    8216   3600   2956 R  0.3  0.4   0:01.42 top          
-    1 root      20   0   24096   5244   3896 S  0.0  0.5   0:01.26 systemd      
