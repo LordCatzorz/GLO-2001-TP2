@@ -19,7 +19,7 @@ typedef struct
 
 } Parametres;
 
-void scheduler_to_fifo(int scheduler)
+void change_scheduler(int scheduler)
 {
 	struct sched_param Param;
 	int maxPriority = sched_get_priority_max(scheduler);
@@ -38,7 +38,7 @@ void *work(void *data)
 
 	printf("Je suis le thread %d et je demarre !!! \n", pParam->ThreadNum);
 
-	scheduler_to_fifo(SCHED_RR);
+	change_scheduler(SCHED_RR);
 	printf("Code retour de errno pour processus %d : %s. \n", pParam->ThreadNum, strerror(errno));
 
 	while (1)
