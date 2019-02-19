@@ -12,14 +12,6 @@
 #include <sched.h>
 
 #define N_THREADS 5
-#define CHOIX_PRIORITE 0 //Changer ce paramètre pour modifier la priorité des threads.
-
-int arr_thread_priorite[5][5] = {
-		{0, 0, 0, 0, 0},
-		{1, 2, 3, 4, 5},
-		{9, 7, 5, 3, 1},
-		{0, -4, -2, 3, 4},
-		{0, -3, -2, 3, 4}};
 
 typedef struct
 {
@@ -47,9 +39,6 @@ void *work(void *data)
 	printf("Je suis le thread %d et je demarre !!! \n", pParam->ThreadNum);
 
 	scheduler_to_fifo();
-	//int ThreadID = syscall(SYS_gettid);
-	//int ret = setpriority(PRIO_PROCESS, ThreadID, arr_thread_priorite[CHOIX_PRIORITE][pParam->ThreadNum]);
-	//printf("Code retour de setpriority() pour processus %d : %d. \n", pParam->ThreadNum, ret);
 	printf("Code retour de errno pour processus %d : %s. \n", pParam->ThreadNum, strerror(errno));
 
 	while (1)
