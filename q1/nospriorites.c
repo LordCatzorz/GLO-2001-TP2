@@ -1,58 +1,46 @@
-#include <unistd.h> 
-#include <stdlib.h> 
+#include <unistd.h>
+#include <stdlib.h>
 #include <sys/types.h>
-#include <sys/wait.h> 
+#include <sys/wait.h>
 #include <stdio.h>
-#include <stdlib.h> 
-#include <pthread.h> 
-#include <errno.h> 
-#include <string.h> 
-#include <sys/syscall.h> 
+#include <stdlib.h>
+#include <pthread.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/syscall.h>
 #include <sys/resource.h>
-#include <sched.h> 
+#include <sched.h>
 
 #define N_THREADS 5
+#define CHOIX_PRIORITE 2 //Changer ce paramètre pour modifier la priorité des threads.
+
+int arr_thread_priorite[4][5] = {
+	{0,0,0,0,0},
+	{1,2,3,4,5},
+	{9,7,5,3,1},
+	{0,-4,-2,3,4},
+	{0,-3,-2,3,4}
+};
 
 typedef struct
 {
 	int ThreadNum;
-	
-}Parametres;
+} Parametres;
 
-void *FonctionThread(void *data)
+void *work(void *data)
 {
 	Parametres *pParam = (Parametres *)data;
-	
-	printf("Je suis le thread %d et je demarre !!! \n", pParam->ThreadNum);
-	
-	int ThreadID = syscall(SYS_gettid);
-               int ret;
-	switch(pParam->ThreadNum)
-      {
-                 case 0:
-			ret = setpriority(PRIO_PROCESS,ThreadID,0);
-			break;
-                 case 1:
-                 	
-			ret = setpriority(PRIO_PROCESS,ThreadID,-3);
-             		break;         
-                 case 2:
-			ret = setpriority(PRIO_PROCESS,ThreadID,-2);
-			break;
-                 case 3:
-                     ret = setpriority(PRIO_PROCESS,ThreadID,3);
-                      break;                 
-                 case 4:
-                     ret = setpriority(PRIO_PROCESS,ThreadID,4);
-                     break;
-        }
 
+	printf("Je suis le thread %d et je demarre !!! \n", pParam->ThreadNum);
+
+	int ThreadID = syscall(SYS_gettid);
+	int ret = setpriority(PRIO_PROCESS, ThreadID, arr_thread_priorite[CHOIX_PRIORITE][pParam->ThreadNum]);
 
 	printf("Code retour de setpriority() pour processus %d : %d. \n", pParam->ThreadNum, ret);
-	printf("Code retour de errno pour processus %d : %s. \n",  pParam->ThreadNum,strerror(errno));
+	printf("Code retour de errno pour processus %d : %s. \n", pParam->ThreadNum, strerror(errno));
 
-	while(1);
-
+	while (1)
+		;
 
 	pthread_exit(NULL);
 }
@@ -62,17 +50,17 @@ int main()
 	pthread_t threads[N_THREADS];
 	Parametres myParam[N_THREADS];
 	int i;
-	for(i=0; i<N_THREADS;i++)
+	for (i = 0; i < N_THREADS; i++)
 	{
 		printf("creation thread %d! \n", i);
 		myParam[i].ThreadNum = i;
-		pthread_create(&threads[i],NULL,FonctionThread,(void *)&myParam[i]);
-	} 
-	
-	for (i=0;i<N_THREADS;i++)
+		pthread_create(&threads[i], NULL, work, (void *)&myParam[i]);
+	}
+
+	for (i = 0; i < N_THREADS; i++)
 	{
-		pthread_join(threads[i],NULL);
-	} 
+		pthread_join(threads[i], NULL);
+	}
 
 	exit(0);
 }
