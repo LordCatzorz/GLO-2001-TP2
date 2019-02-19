@@ -14,13 +14,12 @@
 #define N_THREADS 5
 #define CHOIX_PRIORITE 2 //Changer ce paramètre pour modifier la priorité des threads.
 
-int arr_thread_priorite[4][5] = {
-	{0,0,0,0,0},
-	{1,2,3,4,5},
-	{9,7,5,3,1},
-	{0,-4,-2,3,4},
-	{0,-3,-2,3,4}
-};
+int arr_thread_priorite[5][5] = {
+		{0, 0, 0, 0, 0},
+		{1, 2, 3, 4, 5},
+		{9, 7, 5, 3, 1},
+		{0, -4, -2, 3, 4},
+		{0, -3, -2, 3, 4}};
 
 typedef struct
 {
