@@ -4,14 +4,15 @@
 using namespace std;
 
 // Constructeur
-File::File() {
-	// A vous d'ecrire le code!
-
+File::File()
+{
+    // A vous d'ecrire le code!
 }
 
 // Destructeur
-File::~File() {
-	// A vous d'ecrire le code!
+File::~File()
+{
+    // A vous d'ecrire le code!
 }
 
 /**************************************************************************************
@@ -25,10 +26,11 @@ File::~File() {
                             FlushConsommateurs();
 20191H
  **************************************************************************************/
-CodeFile File::Retire(Produit & p) {
+CodeFile File::Retire(Produit &p)
+{
 
-    	// A vous d'ecrire le code!
-	return FILE_ITEM_VALIDE;
+    // A vous d'ecrire le code!
+    return FILE_ITEM_VALIDE;
 }
 
 /**************************************************************************************
@@ -39,11 +41,12 @@ CodeFile File::Retire(Produit & p) {
     La fonction retourne :
         FILE_ITEM_VALIDE    si l'item est valide
 
- **************************************************************************************/	
-CodeFile File::Insere(Produit & p) {
+ **************************************************************************************/
+CodeFile File::Insere(Produit &p)
+{
 
-    	// A vous d'ecrire le code!
-	return FILE_ITEM_VALIDE;
+    // A vous d'ecrire le code!
+    return FILE_ITEM_VALIDE;
 }
 
 /***************************************************************************************
@@ -56,7 +59,8 @@ CodeFile File::Insere(Produit & p) {
     La fonction retourne simplement le nombre d'item present dans la file.
 20191H
  **************************************************************************************/
-int File::FlushConsommateurs(void) {
-	// A vous d'ecrire le code!
-	return 1;	// Juste pour retourner quelque chose
+int File::FlushConsommateurs(void)
+{
+    // A vous d'ecrire le code!
+    return 1; // Juste pour retourner quelque chose
 }
