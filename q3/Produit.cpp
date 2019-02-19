@@ -2,35 +2,47 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
+#include <string>
 #include <vector>
 #include "Produit.h"
+#include <iostream>
 
 using namespace std;
 
 Produit::Produit() {
-	// A vous d'ecrire le code!
+	NumProduit = 0;
+	NomProduit ="";
+	PrixProduit=0.1f;
 }
 
 int Produit::GetNumProduit(void) {
-	// A vous d'ecrire le code!
-	return 1;	// Juste pour retourner quelque chose
+	return NumProduit;
 }
 
 void Produit::SetNumProduit(int np) {
-	// A vous d'ecrire le code!
+	NumProduit = np;
 }
 
 string Produit::GetNomProduit(void) {
-	// A vous d'ecrire le code!
-	return "";	// Juste pour retourner quelque chose
+	return NomProduit;
 }
 
 float Produit::GetPrixProduit(void) {
-	// A vous d'ecrire le code!
-	return 1.0f;	// Juste pour retourner quelque chose
+	return PrixProduit;
 }
 	
 void Produit::PigerProduit(void) {
-	// A vous d'ecrire le code!
+	ifstream fichier("produits.dat");
+	vector<string> lignesFichier;
+	string ligne;
+	while (getline(fichier,ligne))
+	{
+		lignesFichier.push_back(ligne);
+	}
+	int numeroLigne = rand() % lignesFichier.size();
+	ligne = lignesFichier[numeroLigne];
+	NomProduit=ligne.substr(0,ligne.find(" "));
+	ligne.erase(0,ligne.find(" ")+1);
+	PrixProduit=stof(ligne);
 }
 //20191H
