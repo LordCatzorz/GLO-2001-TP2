@@ -5,13 +5,18 @@ using namespace std;
 
 // Constructeur
 File::File() {
-	// A vous d'ecrire le code!
-
+	FlushAppelle = false;
+	pthread_mutex_init(&mutexFile,0);
+	pthread_cond_init(&CondCons,0);
+	pthread_cond_init(&CondProd,0);
+	
 }
 
 // Destructeur
 File::~File() {
-	// A vous d'ecrire le code!
+	pthread_cond_destroy(&CondCons);
+	pthread_cond_destroy(&CondProd);
+	pthread_mutex_destroy(&mutexFile);
 }
 
 /**************************************************************************************
@@ -26,9 +31,29 @@ File::~File() {
 20191H
  **************************************************************************************/
 CodeFile File::Retire(Produit & p) {
-
-    	// A vous d'ecrire le code!
+	pthread_mutex_lock(&mutexFile);
+	if (FileItems.size()==0)
+	{
+    		
+		cout<<"--File::Retire() La file est vide. Allons dormir!"<<endl;			
+		while(FileItems.size()==0 && FlushAppelle==false) pthread_cond_wait(&CondCons,&mutexFile);
+		if (FlushAppelle==true && FileItems.size()<1)
+		{
+			cout<<"--File::Retire() la file termine, nous devons quitter."<<endl;
+			pthread_mutex_unlock(&mutexFile);
+			return FILE_TERMINEE;
+		}
+	
+	}
+	p=FileItems.back();
+	FileItems.pop();
+	cout<<"--File::Retire() produit avec numero de serie "<< p.GetNumProduit()<<". Nombre de produit dans la file :"<<FileItems.size()<<"."<<endl;
+	pthread_cond_signal(&CondProd);
+	pthread_mutex_unlock(&mutexFile);
+	
+	
 	return FILE_ITEM_VALIDE;
+		
 }
 
 /**************************************************************************************
@@ -41,8 +66,18 @@ CodeFile File::Retire(Produit & p) {
 
  **************************************************************************************/	
 CodeFile File::Insere(Produit & p) {
+	pthread_mutex_lock(&mutexFile);
+	if (FileItems.size()==MAX_PRODUITS_FILE)
+	{
+		cout<<"++File::Insere() File pleine! Allons dormir!"<<endl;
+		while(FileItems.size()==MAX_PRODUITS_FILE) pthread_cond_wait(&CondProd,&mutexFile);
+	}
 
-    	// A vous d'ecrire le code!
+		FileItems.push(p);
+    		cout<<"++File::Insere() produit avec numero de serie "<<p.GetNumProduit()<<".Nombre d'items dans la file = "<<FileItems.size()<<" ."<<endl;
+		pthread_cond_signal(&CondCons);
+		pthread_mutex_unlock(&mutexFile);
+	
 	return FILE_ITEM_VALIDE;
 }
 
@@ -57,6 +92,8 @@ CodeFile File::Insere(Produit & p) {
 20191H
  **************************************************************************************/
 int File::FlushConsommateurs(void) {
-	// A vous d'ecrire le code!
+	FlushAppelle =true;
+	pthread_cond_broadcast(&CondCons);
+	
 	return 1;	// Juste pour retourner quelque chose
 }
