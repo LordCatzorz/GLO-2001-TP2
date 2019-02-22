@@ -42,6 +42,7 @@ static std::vector<ProduitReader*> theVector;
 
 Produit::Produit()
 {
+    // vérouiller ici pour l'initialisation.
     if (theVector.size() == 0)
     {
         ifstream fs("./produits.dat");
@@ -51,6 +52,7 @@ Produit::Produit()
             theVector.push_back(new ProduitReader(currentLine));
         }
     }
+    // dévérouiller l'initialisation.
     this->SetNumProduit(0);
     this->NomProduit = "";
     this->PrixProduit = 0;
