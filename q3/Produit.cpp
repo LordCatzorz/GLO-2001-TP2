@@ -7,36 +7,79 @@
 
 using namespace std;
 
+class ProduitReader
+{
+  public:
+    ProduitReader(std::string readLine)
+    {
+        // int centsDecimalIndex = readLine.find_last_of('.');
+        // const char* cents = readLine.substr(centsDecimalIndex, 2);
+        // readLine = readLine.substr(0, centsDecimalIndex -1);
+        
+        int spaceIndex = readLine.find_last_of(' ');
+        const char* intPrice = readLine.substr(spaceIndex, readLine.length() -spaceIndex).c_str();
+
+        readLine = readLine.substr(0, spaceIndex);
+
+        name = readLine;
+        price = atof(intPrice);
+    }
+    std::string GetName(void)
+    {
+        return this->name;
+    }
+    float GetPrice(void)
+    {
+        return this->price;
+    }
+  private:
+    std::string name;
+    float price;
+};
+
+
+static std::vector<ProduitReader*> theVector;
+
 Produit::Produit()
 {
-    // A vous d'ecrire le code!
+    if (theVector.size() == 0)
+    {
+        ifstream fs("./produits.dat");
+        string currentLine;
+        while (getline(fs, currentLine))
+        {
+            theVector.push_back(new ProduitReader(currentLine));
+        }
+    }
+    this->SetNumProduit(0);
+    this->NomProduit = "";
+    this->PrixProduit = 0;
 }
 
 int Produit::GetNumProduit(void)
 {
-    // A vous d'ecrire le code!
-    return 1; // Juste pour retourner quelque chose
+    return this->NumProduit;
 }
 
 void Produit::SetNumProduit(int np)
 {
-    // A vous d'ecrire le code!
+    this->NumProduit = np;
 }
 
 string Produit::GetNomProduit(void)
 {
-    // A vous d'ecrire le code!
-    return ""; // Juste pour retourner quelque chose
+    return this->NomProduit;
 }
 
 float Produit::GetPrixProduit(void)
 {
-    // A vous d'ecrire le code!
-    return 1.0f; // Juste pour retourner quelque chose
+    return this->PrixProduit;
 }
 
 void Produit::PigerProduit(void)
 {
-    // A vous d'ecrire le code!
+    ProduitReader* product = theVector[rand() % theVector.size()];
+    this->NomProduit = product->GetName();
+    this->PrixProduit = product->GetPrice();
 }
 //20191H
