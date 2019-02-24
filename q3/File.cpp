@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 #include "File.h"
 
 using namespace std;
@@ -6,13 +7,17 @@ using namespace std;
 // Constructeur
 File::File()
 {
-    // A vous d'ecrire le code!
+    pthread_cond_init(&cond_retire_nouvelle_action_possible, NULL);
+    sem_init(&semaphore_file_pleine, 0, MAX_PRODUITS_FILE);
+    pthread_mutex_init(&mutex_accessFile, NULL);
 }
 
 // Destructeur
 File::~File()
 {
-    // A vous d'ecrire le code!
+    pthread_cond_destroy(&cond_retire_nouvelle_action_possible);
+    sem_destroy(&semaphore_file_pleine);
+    pthread_mutex_destroy(&mutex_accessFile);
 }
 
 /**************************************************************************************
@@ -28,8 +33,28 @@ File::~File()
  **************************************************************************************/
 CodeFile File::Retire(Produit &p)
 {
+    int nbItemsFile = 0;
 
-    // A vous d'ecrire le code!
+    pthread_mutex_lock(&mutex_accessFile);
+    nbItemsFile = FileItems.size();
+    if (nbItemsFile == 0)
+    {
+        printf("--File::Retire() La file est vide. Allons dormir!\n");
+        pthread_cond_wait(&cond_retire_nouvelle_action_possible, &mutex_accessFile);
+    }
+    if (flushConsommateurCalled)
+    {   // On s'est fait réveiller, mais il n'y a toujours pas d'item. Il faut donc quitter.
+        pthread_mutex_unlock(&mutex_accessFile);
+        printf("--File::Retire() La file est termine nous devons quitter.\n");
+        return FILE_TERMINEE; // <--- COURT-CIRCUITE
+    }  
+    // On s'est fait réveiller, retirer un des items.
+    p = FileItems.front();
+    FileItems.pop();
+    nbItemsFile = FileItems.size();
+    sem_post(&semaphore_file_pleine);
+    pthread_mutex_unlock(&mutex_accessFile);
+    printf("--File::Retire()produit avec numero de série %d. Nombre de produits dans la file = %d\n", p.GetNumProduit(), nbItemsFile);
     return FILE_ITEM_VALIDE;
 }
 
@@ -44,8 +69,14 @@ CodeFile File::Retire(Produit &p)
  **************************************************************************************/
 CodeFile File::Insere(Produit &p)
 {
-
+    int nbItemsFile = 0;
     // A vous d'ecrire le code!
+    sem_wait(&semaphore_file_pleine);
+    FileItems.push(p);
+    nbItemsFile = FileItems.size();
+    pthread_cond_signal(&cond_retire_nouvelle_action_possible);
+    pthread_mutex_unlock(&mutex_accessFile);
+    printf("++File::Insere()produit avec numero de serie %d. Nombre d'items dans la file = %d\n", p.GetNumProduit(), nbItemsFile);
     return FILE_ITEM_VALIDE;
 }
 
@@ -61,6 +92,12 @@ CodeFile File::Insere(Produit &p)
  **************************************************************************************/
 int File::FlushConsommateurs(void)
 {
-    // A vous d'ecrire le code!
-    return 1; // Juste pour retourner quelque chose
+    int nbItemsFile = 0;
+    pthread_mutex_lock(&mutex_accessFile);
+    flushConsommateurCalled = true;
+    nbItemsFile = FileItems.size();
+    pthread_cond_broadcast(&cond_retire_nouvelle_action_possible);
+    pthread_mutex_unlock(&mutex_accessFile);
+    
+    return nbItemsFile; 
 }
