@@ -39,10 +39,13 @@ class ProduitReader
 
 
 static std::vector<ProduitReader*> theVector;
+static pthread_mutex_t MutexProducteur = PTHREAD_MUTEX_INITIALIZER;
+
 
 Produit::Produit()
 {
-    // vérouiller ici pour l'initialisation.
+    pthread_mutex_lock(&MutexProducteur);
+    // Initialise le vecteur de tous les produits à la première lecture.
     if (theVector.size() == 0)
     {
         ifstream fs("./produits.dat");
@@ -52,7 +55,7 @@ Produit::Produit()
             theVector.push_back(new ProduitReader(currentLine));
         }
     }
-    // dévérouiller l'initialisation.
+    pthread_mutex_unlock(&MutexProducteur);
     this->SetNumProduit(0);
     this->NomProduit = "";
     this->PrixProduit = 0;

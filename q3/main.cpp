@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     pthread_t threadsCons[N_CONSOMMATEURS];
     int status, i;
     pthread_mutex_init(&MutexProchainNumeroSerie, NULL);                /*1*/
-
+    
     srand(time(NULL)); // initialisation de rand
 
     // Creer les threads producteurs

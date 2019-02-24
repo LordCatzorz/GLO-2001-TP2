@@ -2,6 +2,7 @@
 #define PRODUIT_H
 
 #include <string>
+
 class Produit
 {
   public:
@@ -16,7 +17,6 @@ class Produit
     int NumProduit;         //Le numero de serie du produit
     std::string NomProduit; //Le nom du produit
     float PrixProduit;      //Le prix du produit
-    static std::vector<int> allProducts;
 };
 #endif
 //20191H
