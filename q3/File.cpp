@@ -36,17 +36,19 @@ CodeFile File::Retire(Produit &p)
     int nbItemsFile = 0;
 
     pthread_mutex_lock(&mutex_accessFile);
-    nbItemsFile = FileItems.size();
     // Attend si la file n'a plus d'item et que la condition de fermeture n'est pas complétée.
-    if ((!flushConsommateurCalled) && nbItemsFile == 0)
+    if ((!flushConsommateurCalled) && FileItems.size() == 0)
     {
         printf("--File::Retire() La file est vide. Allons dormir!\n");
-        pthread_cond_wait(&cond_retire_nouvelle_action_possible, &mutex_accessFile);
+        do
+        {
+            pthread_cond_wait(&cond_retire_nouvelle_action_possible, &mutex_accessFile);
+        } while ((!flushConsommateurCalled) && FileItems.size() == 0);
     }
 
     // Si la file n'a plus d'item et que la condition de fermeture a été rencontré, alors il faut quitter.
     // Inclue un COURT-CIRCUIT
-    if (flushConsommateurCalled && nbItemsFile == 0)
+    if (flushConsommateurCalled && FileItems.size() == 0)
     {
         pthread_mutex_unlock(&mutex_accessFile);
         printf("--File::Retire() La file est termine nous devons quitter.\n");
@@ -82,7 +84,10 @@ CodeFile File::Insere(Produit &p)
     if (FileItems.size() >= MAX_PRODUITS_FILE)
     {
         printf("++File::Insere() File pleine! Allons dormir!\n");
-        pthread_cond_wait(&cond_inserer_nouvelle_action_possible, &mutex_accessFile);
+        do
+        {
+            pthread_cond_wait(&cond_inserer_nouvelle_action_possible, &mutex_accessFile);
+        } while ((FileItems.size() >= MAX_PRODUITS_FILE));
     }
     FileItems.push(p);
     nbItemsFile = FileItems.size();
