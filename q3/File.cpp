@@ -37,18 +37,23 @@ CodeFile File::Retire(Produit &p)
 
     pthread_mutex_lock(&mutex_accessFile);
     nbItemsFile = FileItems.size();
-    if (nbItemsFile == 0)
+    // Attend si la file n'a plus d'item et que la condition de fermeture n'est pas complétée.
+    if ((!flushConsommateurCalled) && nbItemsFile == 0)
     {
         printf("--File::Retire() La file est vide. Allons dormir!\n");
         pthread_cond_wait(&cond_retire_nouvelle_action_possible, &mutex_accessFile);
     }
-    if (flushConsommateurCalled)
-    {   // On s'est fait réveiller, mais il n'y a toujours pas d'item. Il faut donc quitter.
+
+    // Si la file n'a plus d'item et que la condition de fermeture a été rencontré, alors il faut quitter.
+    // Inclue un COURT-CIRCUIT
+    if (flushConsommateurCalled && nbItemsFile == 0)
+    {
         pthread_mutex_unlock(&mutex_accessFile);
         printf("--File::Retire() La file est termine nous devons quitter.\n");
         return FILE_TERMINEE; // <--- COURT-CIRCUITE
-    }  
-    // On s'est fait réveiller, retirer un des items.
+    }
+
+    // Il y a encore des items à consommer.
     p = FileItems.front();
     FileItems.pop();
     nbItemsFile = FileItems.size();
@@ -72,6 +77,7 @@ CodeFile File::Insere(Produit &p)
     int nbItemsFile = 0;
     // A vous d'ecrire le code!
     sem_wait(&semaphore_file_pleine);
+    pthread_mutex_lock(&mutex_accessFile);
     FileItems.push(p);
     nbItemsFile = FileItems.size();
     pthread_cond_signal(&cond_retire_nouvelle_action_possible);
@@ -98,6 +104,6 @@ int File::FlushConsommateurs(void)
     nbItemsFile = FileItems.size();
     pthread_cond_broadcast(&cond_retire_nouvelle_action_possible);
     pthread_mutex_unlock(&mutex_accessFile);
-    
-    return nbItemsFile; 
+
+    return nbItemsFile;
 }
