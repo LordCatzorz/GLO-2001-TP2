@@ -41,49 +41,45 @@ static inline int xchg(int *ptr, int x)
 //2.1
 void BadLock() {
 }
-	
+
 void BadUnlock() {
 }
 //2.2
 void AtomicLock() {
-
-	while (xchg(&atomicLock,1));
-	
+  while (xchg(&atomicLock,1));
 }
 
 void AtomicUnlock() {
-	xchg(&atomicLock,0);
-} 
+  xchg(&atomicLock,0);
+}
 
 void *CodeThread(void * a)
 {
-    long i;
-    for(i = 0; i < N_ITER; i++)
-    {
-    	AtomicLock();
-        count++;
-	AtomicUnlock();
-       	// La fonction de unlock à ajouter ici
-    }
+  long i;
+  for(i = 0; i < N_ITER; i++)
+  {
+    AtomicLock();
+    count++;
+    AtomicUnlock();
+  }
 }
-
 
 // -------- la fonction main ----------
 
 int main(int argc, char **argv)
 {
-   pthread_t T1, T2;
-   int iTrial;
-   int correct = 0;
-   for (iTrial = 0; iTrial < 10000; iTrial++) {
-   	   count = 0;
-	   pthread_create(&T1, 0, CodeThread, 0);
-   	   pthread_create(&T2, 0, CodeThread, 0);
-       pthread_join(T1, NULL);
-       pthread_join(T2, NULL);
-       printf("La valeur finale est %ld\n",count);
-       if (count == 2*N_ITER) correct++;
-       printf("%d/%d de correct!\n",correct,iTrial+1);   
-   }
+  pthread_t T1, T2;
+  int iTrial;
+  int correct = 0;
+  for (iTrial = 0; iTrial < 10000; iTrial++) {
+    count = 0;
+    pthread_create(&T1, 0, CodeThread, 0);
+    pthread_create(&T2, 0, CodeThread, 0);
+    pthread_join(T1, NULL);
+    pthread_join(T2, NULL);
+    printf("La valeur finale est %ld\n",count);
+    if (count == 2*N_ITER) correct++;
+    printf("%d/%d de correct!\n",correct,iTrial+1);   
+  }
 }
 //20013A2018

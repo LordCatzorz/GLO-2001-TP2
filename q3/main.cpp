@@ -28,6 +28,10 @@ int ProchainNumeroSerie = 1;
 void *ThreadProducteur(void *tid);
 void *ThreadConsommateur(void *tid);
 
+// Ajout du mutex
+
+pthread_mutex_t monMutex;
+
 // Fonction main()
 int main(int argc, char *argv[])
 {

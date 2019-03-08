@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
+#include <string>
+#include <cstring>
 #include <vector>
 #include "Produit.h"
+#include <iostream>
 
 using namespace std;
 
