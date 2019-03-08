@@ -1,0 +1,242 @@
+etu1@ubuntu:~/Desktop/GLO-2001-TP2/q3$ ./tp2 
+main(): en train de creer le thread producteur 1
+main(): en train de creer le thread producteur 2
+main(): en train de creer le thread producteur 3
+main(): en train de creer le thread consommateur 1
+main(): en train de creer le thread consommateur 2
+Producteur main(): en train de creer le thread consommateur 3
+Producteur 3: debute la production des items!
+Producteur 2: debute la production des items!
+1: debute la production des items!
+Producteur 3: genere le produit: (Antivirus, 83.15$) avec le numero de serie 1
+++File::Insere()produit avec numero de serie 1. Nombre d'items dans la file = 1
+Consommateur 1: debute la consommation des produits!
+--File::Retire()produit avec numero de série 1. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Antivirus, 83.15$) avec le numero de serie 1
+Consommateur 2: debute la consommation des produits!
+--File::Retire() La file est vide. Allons dormir!
+Producteur 2: genere le produit: (Tablette, 345.64$) avec le numero de serie 2
+++File::Insere()produit avec numero de serie 2. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 2. Nombre de produits dans la file = 0
+Consommateur 2: consomme le produit: (Tablette, 345.64$) avec le numero de serie 2Producteur 
+1Consommateur : genere le produit: (3Disquette: debute la consommation des produits!, 
+--File::Retire() La file est vide. Allons dormir!
+1.78$) avec le numero de serie 3
+++File::Insere()produit avec numero de serie 3. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 3. Nombre de produits dans la file = 0
+Consommateur 3: consomme le produit: (Disquette, 1.78$) avec le numero de serie 3
+Producteur 3: genere le produit: (Imprimante, 476.95$) avec le numero de serie 4
+++File::Insere()produit avec numero de serie 4. Nombre d'items dans la file = 1
+Producteur 2: genere le produit: (Scanneur, 241.48$) avec le numero de serie 5
+++File::Insere()produit avec numero de serie 5. Nombre d'items dans la file = 2
+--File::Retire()produit avec numero de série 4. Nombre de produits dans la file = 1
+Consommateur 3: consomme le produit: (Imprimante, 476.95$) avec le numero de serie 4
+Producteur 2: genere le produit: (USB, 48.81$) avec le numero de serie 6
+++File::Insere()produit avec numero de serie 6. Nombre d'items dans la file = 2
+Producteur 2: genere le produit: (Memoire, 84.78$) avec le numero de serie 7
+++File::Insere()produit avec numero de serie 7. Nombre d'items dans la file = 3
+Producteur 1: genere le produit: (Ordinateur, 800.59$) avec le numero de serie 8
+++File::Insere()produit avec numero de serie 8. Nombre d'items dans la file = 4
+--File::Retire()produit avec numero de série 5. Nombre de produits dans la file = 3
+Consommateur 3: consomme le produit: (Scanneur, 241.48$) avec le numero de serie 5
+--File::Retire()produit avec numero de série 6. Nombre de produits dans la file = 2
+Consommateur 1: consomme le produit: (USB, 48.81$) avec le numero de serie 6
+Producteur 2: genere le produit: (Antivol, 76.32$) avec le numero de serie 9
+++File::Insere()produit avec numero de serie 9. Nombre d'items dans la file = 3
+Producteur 3: genere le produit: (Camera, 95.48$) avec le numero de serie 10
+++File::Insere()produit avec numero de serie 10. Nombre d'items dans la file = 4
+Producteur 2: genere le produit: (Bloc 96.58, 0$) avec le numero de serie 11
+++File::Insere()produit avec numero de serie 11. Nombre d'items dans la file = 5
+Producteur 1: genere le produit: (Souris, 26.45$) avec le numero de serie 12
+++File::Insere()produit avec numero de serie 12. Nombre d'items dans la file = 6
+--File::Retire()produit avec numero de série 7. Nombre de produits dans la file = 5
+Consommateur 1: consomme le produit: (Memoire, 84.78$) avec le numero de serie 7
+Producteur 1: genere le produit: (Memoire, 84.78$) avec le numero de serie 13
+++File::Insere()produit avec numero de serie 13. Nombre d'items dans la file = 6
+--File::Retire()produit avec numero de série 8. Nombre de produits dans la file = 5
+Consommateur 2: consomme le produit: (Ordinateur, 800.59$) avec le numero de serie 8
+--File::Retire()produit avec numero de série 9. Nombre de produits dans la file = 4
+Consommateur 3: consomme le produit: (Antivol, 76.32$) avec le numero de serie 9
+Producteur 3: genere le produit: (Adaptateur, 59.95$) avec le numero de serie 14
+++File::Insere()produit avec numero de serie 14. Nombre d'items dans la file = 5
+--File::Retire()produit avec numero de série 10. Nombre de produits dans la file = 4
+Consommateur 2: consomme le produit: (Camera, 95.48$) avec le numero de serie 10
+--File::Retire()produit avec numero de série 11. Nombre de produits dans la file = 3
+Consommateur 3: consomme le produit: (Bloc 96.58, 0$) avec le numero de serie 11
+Producteur 1: genere le produit: (Console, 398.47$) avec le numero de serie 15
+++File::Insere()produit avec numero de serie 15. Nombre d'items dans la file = 4
+Producteur 2: genere le produit: (Ecran, 102.75$) avec le numero de serie 16
+++File::Insere()produit avec numero de serie 16. Nombre d'items dans la file = 5
+--File::Retire()produit avec numero de série 12. Nombre de produits dans la file = 4
+Consommateur 2: consomme le produit: (Souris, 26.45$) avec le numero de serie 12
+--File::Retire()produit avec numero de série 13. Nombre de produits dans la file = 3
+Consommateur 1: consomme le produit: (Memoire, 84.78$) avec le numero de serie 13
+--File::Retire()produit avec numero de série 14. Nombre de produits dans la file = 2
+Consommateur 1: consomme le produit: (Adaptateur, 59.95$) avec le numero de serie 14
+--File::Retire()produit avec numero de série 15. Nombre de produits dans la file = 1
+Consommateur 2: consomme le produit: (Console, 398.47$) avec le numero de serie 15
+--File::Retire()produit avec numero de série 16. Nombre de produits dans la file = 0
+Consommateur 2: consomme le produit: (Ecran, 102.75$) avec le numero de serie 16
+--File::Retire() La file est vide. Allons dormir!
+--File::Retire() La file est vide. Allons dormir!
+--File::Retire() La file est vide. Allons dormir!
+Producteur 1: genere le produit: (Manette, 67.82$) avec le numero de serie 17
+++File::Insere()produit avec numero de serie 17. Nombre d'items dans la file = 1
+Producteur 2: genere le produit: (Etui, 26.71$) avec le numero de serie 18
+++File::Insere()produit avec numero de serie 18. Nombre d'items dans la file = 2
+--File::Retire()produit avec numero de série 17. Nombre de produits dans la file = 1
+Consommateur 2: consomme le produit: (Manette, 67.82$) avec le numero de serie 17
+--File::Retire()produit avec numero de série 18. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Etui, 26.71$) avec le numero de serie 18
+--File::Retire() La file est vide. Allons dormir!
+--File::Retire() La file est vide. Allons dormir!
+Producteur 3: genere le produit: (Memoire, 84.78$) avec le numero de serie 19
+++File::Insere()produit avec numero de serie 19. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 19. Nombre de produits dans la file = 0
+Consommateur 3: consomme le produit: (Memoire, 84.78$) avec le numero de serie 19
+--File::Retire() La file est vide. Allons dormir!
+Producteur 3: genere le produit: (Souris, 26.45$) avec le numero de serie 20
+++File::Insere()produit avec numero de serie 20. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 20. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Souris, 26.45$) avec le numero de serie 20
+Producteur 2: genere le produit: (Disque, 86.94$) avec le numero de serie 21
+++File::Insere()produit avec numero de serie 21. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 21. Nombre de produits dans la file = 0
+Consommateur 2: consomme le produit: (Disque, 86.94$) avec le numero de serie 21
+--File::Retire() La file est vide. Allons dormir!
+Producteur 2: genere le produit: (CD, 2.15$) avec le numero de serie 22
+++File::Insere()produit avec numero de serie 22. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 22. Nombre de produits dans la file = 0
+Consommateur 3: consomme le produit: (CD, 2.15$) avec le numero de serie 22
+Producteur 3: genere le produit: (Moniteur, 204.75$) avec le numero de serie 23
+++File::Insere()produit avec numero de serie 23. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 23. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Moniteur, 204.75$) avec le numero de serie 23
+Producteur 3: genere le produit: (Console, 398.47$) avec le numero de serie 24
+++File::Insere()produit avec numero de serie 24. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 24. Nombre de produits dans la file = 0
+Consommateur 2: consomme le produit: (Console, 398.47$) avec le numero de serie 24
+--File::Retire() La file est vide. Allons dormir!
+Producteur 1: genere le produit: (Serveur, 3257.48$) avec le numero de serie 25
+++File::Insere()produit avec numero de serie 25. Nombre d'items dans la file = 1
+--File::Retire()produit avec numero de série 25. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Serveur, 3257.48$) avec le numero de serie 25
+Producteur 3: genere le produit: (Application, 96.28$) avec le numero de serie 26
+++File::Insere()produit avec numero de serie 26. Nombre d'items dans la file = 1
+Producteur 3: genere le produit: (Bloc 96.58, 0$) avec le numero de serie 27
+++File::Insere()produit avec numero de serie 27. Nombre d'items dans la file = 2
+Producteur 1: genere le produit: (Processeur, 675.49$) avec le numero de serie 28
+++File::Insere()produit avec numero de serie 28. Nombre d'items dans la file = 3
+--File::Retire()produit avec numero de série 26. Nombre de produits dans la file = 2
+Consommateur 2: consomme le produit: (Application, 96.28$) avec le numero de serie 26
+Producteur 2: genere le produit: (Tablette, 345.64$) avec le numero de serie 29
+++File::Insere()produit avec numero de serie 29. Nombre d'items dans la file = 3
+Producteur 3: genere le produit: (USB, 48.81$) avec le numero de serie 30
+++File::Insere()produit avec numero de serie 30. Nombre d'items dans la file = 4
+Producteur 2: genere le produit: (Carte, 102.78$) avec le numero de serie 31
+++File::Insere()produit avec numero de serie 31. Nombre d'items dans la file = 5
+Producteur 2: genere le produit: (Disquette, 1.78$) avec le numero de serie 32
+++File::Insere()produit avec numero de serie 32. Nombre d'items dans la file = 6
+Producteur 2: genere le produit: (Station, 107.45$) avec le numero de serie 33
+++File::Insere()produit avec numero de serie 33. Nombre d'items dans la file = 7
+Producteur 3: genere le produit: (Antivol, 76.32$) avec le numero de serie 34
+++File::Insere()produit avec numero de serie 34. Nombre d'items dans la file = 8
+--File::Retire()produit avec numero de série 27. Nombre de produits dans la file = 7
+Consommateur 3: consomme le produit: (Bloc 96.58, 0$) avec le numero de serie 27
+Producteur 1: genere le produit: (Jeu, 78.65$) avec le numero de serie 35
+++File::Insere()produit avec numero de serie 35. Nombre d'items dans la file = 8
+Producteur 2: genere le produit: (Station, 107.45$) avec le numero de serie 36
+++File::Insere()produit avec numero de serie 36. Nombre d'items dans la file = 9
+--File::Retire()produit avec numero de série 28. Nombre de produits dans la file = 8
+Consommateur 2: consomme le produit: (Processeur, 675.49$) avec le numero de serie 28
+Producteur 3: genere le produit: (Ventilateur, 76.48$) avec le numero de serie 37
+++File::Insere()produit avec numero de serie 37. Nombre d'items dans la file = 9
+Producteur 1: genere le produit: (Application, 96.28$) avec le numero de serie 38
+++File::Insere()produit avec numero de serie 38. Nombre d'items dans la file = 10
+--File::Retire()produit avec numero de série 29. Nombre de produits dans la file = 9
+Consommateur 1: consomme le produit: (Tablette, 345.64$) avec le numero de serie 29
+Producteur 2: genere le produit: (Disquette, 1.78$) avec le numero de serie 39
+++File::Insere()produit avec numero de serie 39. Nombre d'items dans la file = 10
+--File::Retire()produit avec numero de série 30. Nombre de produits dans la file = 9
+Consommateur 3: consomme le produit: (USB, 48.81$) avec le numero de serie 30
+--File::Retire()produit avec numero de série 31. Nombre de produits dans la file = 8
+Consommateur 2: consomme le produit: (Carte, 102.78$) avec le numero de serie 31
+Producteur 3: genere le produit: (Ordinateur, 800.59$) avec le numero de serie 40
+++File::Insere()produit avec numero de serie 40. Nombre d'items dans la file = 9
+Producteur 3: genere le produit: (Processeur, 675.49$) avec le numero de serie 41
+++File::Insere()produit avec numero de serie 41. Nombre d'items dans la file = 10
+Producteur 1: genere le produit: (Imprimante, 476.95$) avec le numero de serie 42
+++File::Insere() File pleine! Allons dormir!
+Producteur 3: genere le produit: (Clavier, 37.86$) avec le numero de serie 43
+++File::Insere() File pleine! Allons dormir!
+--File::Retire()produit avec numero de série 32. Nombre de produits dans la file = 9
+Consommateur 2: consomme le produit: (Disquette, 1.78$) avec le numero de serie 32
+++File::Insere()produit avec numero de serie 42. Nombre d'items dans la file = 10
+--File::Retire()produit avec numero de série 33. Nombre de produits dans la file = 9
+Consommateur 3: consomme le produit: (Station, 107.45$) avec le numero de serie 33
+++File::Insere()produit avec numero de serie 43. Nombre d'items dans la file = 10
+Producteur 2: genere le produit: (Station, 107.45$) avec le numero de serie 44
+++File::Insere() File pleine! Allons dormir!
+--File::Retire()produit avec numero de série 34. Nombre de produits dans la file = 9
+Consommateur 1: consomme le produit: (Antivol, 76.32$) avec le numero de serie 34
+++File::Insere()produit avec numero de serie 44. Nombre d'items dans la file = 10
+--File::Retire()produit avec numero de série 35. Nombre de produits dans la file = 9
+Consommateur 2: consomme le produit: (Jeu, 78.65$) avec le numero de serie 35
+Producteur 2: genere le produit: (DVD, 5.48$) avec le numero de serie 45
+++File::Insere()produit avec numero de serie 45. Nombre d'items dans la file = 10
+Producteur 3: genere le produit: (Scanneur, 241.48$) avec le numero de serie 46
+++File::Insere() File pleine! Allons dormir!
+--File::Retire()produit avec numero de série 36. Nombre de produits dans la file = 9
+Consommateur 3: consomme le produit: (Station, 107.45$) avec le numero de serie 36
+++File::Insere()produit avec numero de serie 46. Nombre d'items dans la file = 10
+Producteur 2: genere le produit: (Portable, 624.73$) avec le numero de serie 47
+++File::Insere() File pleine! Allons dormir!
+Producteur 1: genere le produit: (CD, 2.15$) avec le numero de serie 48
+++File::Insere() File pleine! Allons dormir!
+--File::Retire()produit avec numero de série 37. Nombre de produits dans la file = 9
+Consommateur 3: consomme le produit: (Ventilateur, 76.48$) avec le numero de serie 37
+++File::Insere()produit avec numero de serie 47. Nombre d'items dans la file = 10
+Producteur 2: genere le produit: (Bluetooth, 46.21$) avec le numero de serie 49
+++File::Insere() File pleine! Allons dormir!
+--File::Retire()produit avec numero de série 38. Nombre de produits dans la file = 9
+Consommateur 1: consomme le produit: (Application, ++File::Insere()produit avec numero de serie 48. Nombre d'items dans la file = 10
+96.28$) avec le numero de serie 38
+--File::Retire()produit avec numero de série 39. Nombre de produits dans la file = 9
+Consommateur 2: consomme le produit: (Disquette, 1.78$) avec le numero de serie 39
+++File::Insere()produit avec numero de serie 49. Nombre d'items dans la file = 10
+Producteur 2: genere le produit: (Console, 398.47$) avec le numero de serie 50
+++File::Insere() File pleine! Allons dormir!
+Producteur 1: quitte car on a suffisamment produit d'items.
+--File::Retire()produit avec numero de série 40. Nombre de produits dans la file = 9
+Consommateur 1: consomme le produit: (Ordinateur, 800.59$) avec le numero de serie 40
+++File::Insere()produit avec numero de serie 50. Nombre d'items dans la file = 10
+Producteur 3: quitte car on a suffisamment produit d'items.
+--File::Retire()produit avec numero de série 41. Nombre de produits dans la file = 9
+Consommateur 3: consomme le produit: (Processeur, 675.49$) avec le numero de serie 41
+--File::Retire()produit avec numero de série 42. Nombre de produits dans la file = 8
+Consommateur 2: consomme le produit: (Imprimante, 476.95$) avec le numero de serie 42
+--File::Retire()produit avec numero de série 43. Nombre de produits dans la file = 7
+Consommateur 1: consomme le produit: (Clavier, 37.86$) avec le numero de serie 43
+--File::Retire()produit avec numero de série 44. Nombre de produits dans la file = 6
+Consommateur 2: consomme le produit: (Station, 107.45$) avec le numero de serie 44
+--File::Retire()produit avec numero de série 45. Nombre de produits dans la file = 5
+Consommateur 2: consomme le produit: (DVD, 5.48$) avec le numero de serie 45
+--File::Retire()produit avec numero de série 46. Nombre de produits dans la file = 4
+Consommateur 3: consomme le produit: (Scanneur, 241.48$) avec le numero de serie 46
+--File::Retire()produit avec numero de série 47. Nombre de produits dans la file = 3
+Consommateur 3: consomme le produit: (Portable, 624.73$) avec le numero de serie 47
+--File::Retire()produit avec numero de série 48. Nombre de produits dans la file = 2
+Consommateur 3: consomme le produit: (CD, 2.15$) avec le numero de serie 48
+--File::Retire()produit avec numero de série 49. Nombre de produits dans la file = 1
+Consommateur 3: consomme le produit: (Bluetooth, 46.21$) avec le numero de serie 49
+--File::Retire()produit avec numero de série 50. Nombre de produits dans la file = 0
+Consommateur 1: consomme le produit: (Console, 398.47$) avec le numero de serie 50
+Producteur 2: quitte car on a suffisamment produit d'items.
+Nous devons flusher les consommateurs de la file!
+Il reste 0 items dans la file!
+--File::Retire() La file est termine nous devons quitter.
+Consommateur 2: quitte car il ne reste plus de produits a consommer.
+--File::Retire() La file est termine nous devons quitter.
+Consommateur 3: quitte car il ne reste plus de produits a consommer.
+--File::Retire() La file est termine nous devons quitter.
+Consommateur 1: quitte car il ne reste plus de produits a consommer.
