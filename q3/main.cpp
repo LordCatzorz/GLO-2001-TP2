@@ -20,17 +20,13 @@ File MaFile;
 #define N_CONSOMMATEURS 3      // Nombre de threads consommateurs a demarrer
 #define MAX_ITEMS_APRODUIRE 50 // Nombre d'items maximum a produire
 
-// La variable globale que vous devez proteger
-pthread_mutex_t MutexProchainNumeroSerie;                          /*1*/
+// La variable globale que vous devez proteger                       
 int ProchainNumeroSerie = 1;
+/*1*/pthread_mutex_t MutexProchainNumeroSerie;   
 
 // Declaration des fonctions des threads
 void *ThreadProducteur(void *tid);
 void *ThreadConsommateur(void *tid);
-
-// Ajout du mutex
-
-pthread_mutex_t monMutex;
 
 // Fonction main()
 int main(int argc, char *argv[])
@@ -40,7 +36,7 @@ int main(int argc, char *argv[])
     pthread_t threadsProd[N_PRODUCTEURS];
     pthread_t threadsCons[N_CONSOMMATEURS];
     int status, i;
-    pthread_mutex_init(&MutexProchainNumeroSerie, NULL);                /*1*/
+/*1*/pthread_mutex_init(&MutexProchainNumeroSerie, NULL);                
     
     srand(time(NULL)); // initialisation de rand
 
@@ -90,7 +86,7 @@ int main(int argc, char *argv[])
         pthread_join(threadsCons[i], NULL);
     }
 
-    pthread_mutex_destroy(&MutexProchainNumeroSerie);                /*1*/
+/*1*/pthread_mutex_destroy(&MutexProchainNumeroSerie);                
 
     // Le programme peut maintenant terminer
     exit(0);
@@ -105,9 +101,9 @@ void *ThreadProducteur(void *tid)
     cout << "Producteur " << myId << ": debute la production des items!" << endl;
     while (true)
     {
-        pthread_mutex_lock(&MutexProchainNumeroSerie);               /*1*/
+/*1*/   pthread_mutex_lock(&MutexProchainNumeroSerie);
         NumeroSerieProduit = ProchainNumeroSerie++;
-        pthread_mutex_unlock(&MutexProchainNumeroSerie);             /*1*/
+/*1*/   pthread_mutex_unlock(&MutexProchainNumeroSerie);             
         if (NumeroSerieProduit > MAX_ITEMS_APRODUIRE)
         {
             // Le programme a suffisamment produit d'items. On quitte.
